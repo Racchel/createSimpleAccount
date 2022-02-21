@@ -1,0 +1,12 @@
+{
+  "name": "createAccount",
+  "version": "1.0.0",
+  "description": "Projeto de criacao de conta",
+  "main": "index.js",
+  "author": "Racchel Velasco",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "inquirer": "^8.2.0"
+  }
+}
