@@ -5,8 +5,26 @@
   "main": "index.js",
   "author": "Racchel Velasco",
   "license": "MIT",
+  "scripts": {
+    "start": "",
+    "test": "jest --silent --verbose --colors --noStackTrace"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
   "dependencies": {
     "chalk": "^5.0.0",
     "inquirer": "^8.2.0"
-  }
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "standard": "^16.0.4"
+  },
+  "type": "module"
 }

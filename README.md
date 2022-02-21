@@ -2,14 +2,35 @@
 
 Projeto simples para criação de conta:
 
-- NodeJs
-- Inquirer: fazer perguntas e receber respostas no terminal
-- Chalk: personalizar logs
-- Jest: testes automatizados
+- **Javascript ES6**
+- **NodeJs**
+
+### Módulos internos
+
+- **Fs**: módulo do NodeJS para interagir com o sistema de arquivos
+
+### Dependencies
+
+- **Inquirer**: fazer perguntas e receber respostas no terminal
+- **Chalk**: personalizar logs
+
+### DevDependencies
+
+- **Jest**: aplicar testes automatizados
+- **babel-jest**: usar jest com ES6
+- **@babel/plugin-transform-runtime**:
+- **@babel/preset-env**:
+- **Standard**: JS: guia de estilo e formatador
+- **Nodemon**: atualizar o código automaticamente ao salvar arquivo
+
+## Links importantes:
+- **Usar JEST**: [Guia Jest](https://oieduardorabelo.medium.com/jest-escrever-testes-nunca-foi-t%C3%A3o-divertido-5f0e1950ba10)
+
+- **Usar Jest com ES6**: [Jest com ES6](https://stackoverflow.com/questions/35756479/does-jest-support-es6-import-export)
 
 ## Funcionalidades:
 
-1. [ ] Criar uma conta nova: usuario e senha
+1. [ ] Criar uma conta nova: usuário e senha
 2. [ ] Depositar um valor em dinheiro
 3. [ ] Consultar saldo
 4. [ ] Sacar um valor em dinheiro
