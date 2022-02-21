@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "",
-    "test": "jest --silent --verbose --colors --noStackTrace"
+    "test": "jest --silent --verbose --colors --noStackTrace",
+    "test:staged": "npm test -- --passWithNoTests --findRelatedTests",
+    "test:ci": "npm test -- --coverage "
   },
   "standard": {
     "env": [
