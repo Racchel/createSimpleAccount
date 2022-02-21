@@ -21,6 +21,8 @@ Projeto simples para criação de conta:
 - **@babel/plugin-transform-runtime**:
 - **@babel/preset-env**:
 - **Standard**: JS: guia de estilo e formatador
+- **Lint-staged**: permite que rode scripts na nossa staged area do github
+- **Husky**: permite adicionar hooks no git (rodar um script antes que aconteça um commit ou um push)
 - **Nodemon**: atualizar o código automaticamente ao salvar arquivo
 
 ## Links importantes:
