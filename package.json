@@ -6,7 +6,7 @@
   "author": "Racchel Velasco",
   "license": "MIT",
   "scripts": {
-    "start": "",
+    "start": "nodemon src/index.js",
     "test": "jest --silent --verbose --colors --noStackTrace",
     "test:staged": "npm test -- --passWithNoTests --findRelatedTests",
     "test:ci": "npm test -- --coverage "
