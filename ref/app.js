@@ -6,31 +6,29 @@ import chalk from 'chalk'
 import fs from 'fs'
 
 // START
-const start = async () => {
+const start = () => {
   infoMessage('Bem vindo(a) ao CreateSimpleAccount!')
 
-  //   const { menu } = makeMenu()
+  const { menu } = makeMenu()
 
-  //   return menu.start()
-  const { accountRepo } = makeAccount()
-  return await menu(accountRepo)
+  return menu.start()
 }
 
 // FACTORY
 const makeAccount = () => {
   const account = new Account()
-  const accountRepo = new AccountRepository(account)
+  const accountService = new accountServicesitory(account)
 
   return {
     account,
-    accountRepo
+    accountService
   }
 }
 
 const makeMenu = () => {
-  const { accountRepo } = makeAccount()
+  const { accountService } = makeAccount()
 
-  const menu = new Menu(accountRepo)
+  const menu = new Menu(accountService)
 
   return {
     menu
@@ -66,11 +64,12 @@ const returnQuestions = ({ indexs }) => {
 
 // MENU
 class Menu {
-  constructor (accountRepo) {
-    this.accountRepo = accountRepo
+  constructor (accountService) {
+    this.accountService = accountService
   }
 
   async start () {
+    // console.log(await this.accountService.userInput({ isCreate: false }))
     try {
       const choice = await inquirer.prompt([{
         type: 'list',
@@ -89,26 +88,34 @@ class Menu {
       const ch = choice.action.split(' ')[0]
 
       console.log(ch)
-      if (ch === 'Login') return await this.accountRepo.userInput({ isCreate: false })
-      if (ch === 'Criar') return await this.accountRepo.userInput({ isCreate: true })
-      if (ch === 'Consultar') return await this.accountRepo.checkBalance()
-      if (ch === 'Depositar') return await this.accountRepo.deposit()
-      if (ch === 'Sacar') return await this.accountRepo.withdraw()
-      if (ch === 'Sair') return this.exitProcess()
+      if (ch === 'Login') return await this.accountService.userInput({ isCreate: false })
+      if (ch === 'Criar') return await this.accountService.userInput({ isCreate: true })
+      if (ch === 'Consultar') return await this.accountService.checkBalance()
+      if (ch === 'Depositar') return await this.accountService.deposit()
+      if (ch === 'Sacar') return await this.accountService.withdraw()
+      if (ch === 'Sair') return exitProcess()
 
-      await this.start()
+      const selectMethod = {
+        Login () { return this.accountService.userInput({ isCreate: false }) },
+        Criar () { return this.accountService.userInput({ isCreate: true }) },
+        Consultar () { return this.accountService.checkBalance() },
+        Depositar () { return this.accountService.deposit() },
+        Sacar () { return this.accountService.withdraw() },
+        Sair () { return exitProcess() }
+      }
+
+      // const ch = choice.action.split(' ')[0]
+      // const method = selectMethod[ch]
+
+      // method()
+      // this.start()
     } catch (err) {
       console.error(err)
     }
   }
-
-  exitProcess () {
-    infoMessage('Obrigado por usar o CreateSimpleAccount! Nos vemos na próxima!')
-    return process.exit()
-  }
 }
 
-const menu = async (accountRepo) => {
+const menu = async (accountService) => {
   try {
     const choice = await inquirer.prompt([{
       type: 'list',
@@ -124,17 +131,19 @@ const menu = async (accountRepo) => {
       ]
     }])
 
+    const selectMethod = {
+      Login () { return accountService.userInput({ isCreate: false }) },
+      Criar () { return accountService.userInput({ isCreate: true }) },
+      Consultar () { return accountService.checkBalance() },
+      Depositar () { return accountService.deposit() },
+      Sacar () { return accountService.withdraw() },
+      Sair () { return exitProcess() }
+    }
+
     const ch = choice.action.split(' ')[0]
+    const method = selectMethod[ch]
 
-    console.log(ch)
-    if (ch === 'Login') return await accountRepo.userInput({ isCreate: false })
-    if (ch === 'Criar') return await accountRepo.userInput({ isCreate: true })
-    if (ch === 'Consultar') return await accountRepo.checkBalance()
-    if (ch === 'Depositar') return await accountRepo.deposit()
-    if (ch === 'Sacar') return await accountRepo.withdraw()
-    if (ch === 'Sair') return exitProcess()
-
-    await start(accountRepo)
+    method()
   } catch (err) {
     console.error(err)
   }
@@ -182,7 +191,7 @@ class Account {
 }
 
 // ACCOUNT-REPOSITORY
-class AccountRepository {
+class accountServicesitory {
   constructor (account) {
     this.ACCOUNT = account
   }
@@ -235,5 +244,11 @@ const checkBalance = () => { return true }
 const successMessage = (msg) => { console.log(chalk.bgGreen.black(msg)) }
 const infoMessage = (msg) => { console.log(chalk.bgBlueBright.black(msg)) }
 const errorMessage = (msg) => { console.log(chalk.bgRed.black(msg)) }
+
+// TERMINAR O PROCESSO
+const exitProcess = () => {
+  infoMessage('Obrigado por usar o CreateSimpleAccount! Nos vemos na próxima!')
+  return process.exit()
+}
 
 start()
