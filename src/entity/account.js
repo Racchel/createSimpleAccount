@@ -69,4 +69,12 @@ export default class Account {
       }
     )
   }
+
+  checkPassword (password) {
+    // const regex = /^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{8, 20}$/
+
+    // return regex.test(password)
+    // ver um regex que funfa
+    return true
+  }
 }

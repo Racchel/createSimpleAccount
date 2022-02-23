@@ -1,6 +1,6 @@
 import inquirer from 'inquirer'
 import { returnQuestions } from './index.js'
-import { errorMessage } from '../utils/messages/index.js'
+import { errorMessage, infoMessage } from '../utils/messages/index.js'
 
 export default class AccountService {
   constructor (account) {
@@ -12,13 +12,28 @@ export default class AccountService {
     const { username } = await inquirer.prompt(qUsername)
     const usernameCorrect = this.ACCOUNT.checkUsername(username)
 
+    // validar usuario
     if (!usernameCorrect && isCreate === false) {
-      errorMessage('Esse usuário não foi encontrado na nossa base de dados :(')
+      errorMessage('Essa conta não existe! Por favor, informe novamente')
       return await this.userInput({ isCreate })
     }
 
+    if (usernameCorrect && isCreate === true) {
+      errorMessage('Essa conta já existe! Por favor, escolha outro usuario!')
+      return await this.userInput({ isCreate })
+    }
+
+    // input de senha
     const qPassword = returnQuestions({ indexs: [1] })
     const { password } = await inquirer.prompt(qPassword)
+    const passwordCorrect = this.ACCOUNT.checkPassword(password)
+
+    // validar senha
+    if (!passwordCorrect && isCreate === true) {
+      errorMessage('Senha inválida!')
+      infoMessage(' A senha deve ter, no mínimo, 8 caracteres, um MAIUSCULO, um minusculo, um número e um caracter especial. Exemplo: AAaa*2022')
+      return await this.userInput({ isCreate })
+    }
 
     if (username !== '' && password !== '') {
       return (isCreate)
