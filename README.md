@@ -44,6 +44,8 @@ Projeto simples para criação de conta:
 
 ## Fluxo de sucesso
 
+0. [ ] MSG: Bem vindo(a) ao CreateSimpleAccount!
+
 1. [ ] MSG: Obrigado pela confiança! Sua conta foi criada como sucesso!
 
 2. [ ] MSG: Perfeito! O valor de R$<valor> foi depositado para <usuario>!
