@@ -12,7 +12,7 @@ const start = async () => {
   //   const { menu } = makeMenu()
 
   //   return menu.start()
-  const { accountRepo } = makeAccount
+  const { accountRepo } = makeAccount()
   return await menu(accountRepo)
 }
 
@@ -127,12 +127,12 @@ const menu = async (accountRepo) => {
     const ch = choice.action.split(' ')[0]
 
     console.log(ch)
-    if (ch === 'Login') return await this.accountRepo.userInput({ isCreate: false })
-    if (ch === 'Criar') return await this.accountRepo.userInput({ isCreate: true })
-    if (ch === 'Consultar') return await this.accountRepo.checkBalance()
-    if (ch === 'Depositar') return await this.accountRepo.deposit()
-    if (ch === 'Sacar') return await this.accountRepo.withdraw()
-    if (ch === 'Sair') return this.exitProcess()
+    if (ch === 'Login') return await accountRepo.userInput({ isCreate: false })
+    if (ch === 'Criar') return await accountRepo.userInput({ isCreate: true })
+    if (ch === 'Consultar') return await accountRepo.checkBalance()
+    if (ch === 'Depositar') return await accountRepo.deposit()
+    if (ch === 'Sacar') return await accountRepo.withdraw()
+    if (ch === 'Sair') return exitProcess()
 
     await start(accountRepo)
   } catch (err) {
