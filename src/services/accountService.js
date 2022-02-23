@@ -8,11 +8,18 @@ export default class AccountService {
   }
 
   async userInput ({ isCreate }) {
+    // input de usuario
     const qUsername = returnQuestions({ indexs: [0] })
     const { username } = await inquirer.prompt(qUsername)
-    const usernameCorrect = this.ACCOUNT.checkUsername(username)
 
     // validar usuario
+    if (username === '') {
+      errorMessage('Usuário é obrigatório!')
+      return await this.userInput({ isCreate })
+    }
+
+    const usernameCorrect = this.ACCOUNT.checkUsername(username)
+
     if (!usernameCorrect && isCreate === false) {
       errorMessage('Essa conta não existe! Por favor, informe novamente')
       return await this.userInput({ isCreate })
@@ -26,22 +33,25 @@ export default class AccountService {
     // input de senha
     const qPassword = returnQuestions({ indexs: [1] })
     const { password } = await inquirer.prompt(qPassword)
-    const passwordCorrect = this.ACCOUNT.checkPassword(password)
 
     // validar senha
+    if (password === '') {
+      errorMessage('Senha é obrigatória!')
+      return await this.userInput({ isCreate })
+    }
+
+    const passwordCorrect = this.ACCOUNT.checkPassword(password)
+
     if (!passwordCorrect && isCreate === true) {
       errorMessage('Senha inválida!')
       infoMessage(' A senha deve ter, no mínimo, 8 caracteres, um MAIUSCULO, um minusculo, um número e um caracter especial. Exemplo: AAaa*2022')
       return await this.userInput({ isCreate })
     }
 
-    if (username !== '' && password !== '') {
-      return (isCreate)
-        ? this.ACCOUNT.create({ username, password })
-        : this.ACCOUNT.login({ username, password })
-    }
-    errorMessage('Usuário e senha são obrigatórios!')
-    return await this.userInput({ isCreate })
+    // se tudo der certo
+    return (isCreate)
+      ? this.ACCOUNT.create({ username, password })
+      : this.ACCOUNT.login({ username, password })
   }
 
   checkBalance () {

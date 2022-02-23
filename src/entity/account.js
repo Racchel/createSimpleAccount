@@ -1,4 +1,5 @@
 import { successMessage, infoMessage, errorMessage } from '../utils/messages/index.js'
+import { encrypter, decrypt } from '../utils/encrypter/index.js'
 
 export default class Account {
   constructor () {
@@ -9,24 +10,26 @@ export default class Account {
   }
 
   async create ({ username, password }) {
-    this.accountList.push({ username: username, password: password })
-    console.log(this.accountList)
-    return infoMessage(`Criar conta: ${username} | ${password}`)
+    const encryptedPassword = encrypter(password)
+
+    this.accountList.push({ username: username, password: encryptedPassword })
+    return successMessage(`Obrigado pela confiança! Sua conta foi criada como sucesso!: ${username}`)
   }
 
   async login ({ username, password }) {
     const accountCorrect = this.accountList.some(
       (account) => {
-        return account.username === username && account.password === password
+        const decryptedPassword = decrypt(account.password)
+        return account.username === username && decryptedPassword === password
       }
     )
 
     if (!accountCorrect) return errorMessage('Usuário ou senha estão incorretos.')
 
     this.username = username
-    this.password = password
+    this.password = encrypter(password)
 
-    infoMessage(`Login: ${this.username} | ${this.password}`)
+    successMessage(`Usuário ${this.username} logado!`)
 
     return true
   }

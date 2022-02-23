@@ -1,9 +1,7 @@
-const str = 'QuelIFAM*2018'
-
-export const encrypter = (str) => {
+const encrypter = (str) => {
   let encrypted = ''
 
-  for (let i = 0; i < str.length - 1; i++) {
+  for (let i = 0; i < str.length; i++) {
     i !== 0
       ? encrypted += `O${str.charCodeAt(i)}`
       : encrypted += str.charCodeAt(i)
@@ -12,19 +10,18 @@ export const encrypter = (str) => {
   return encrypted
 }
 
-export const decrypt = (str) => {
+const decrypt = (str) => {
   const arrayStr = str.split('O')
-  let decrypt = ''
+  let decrypted = ''
 
   arrayStr.map(code => (
-    decrypt += String.fromCharCode(code)
+    decrypted += String.fromCharCode(code)
   ))
 
-  return decrypt
+  return decrypted
 }
 
-const passwordEncrypter = encrypter(str)
-const password = decrypt(passwordEncrypter)
-
-console.log(`passwordEncrypter: ${passwordEncrypter}`)
-console.log(password)
+export {
+  encrypter,
+  decrypt
+}
