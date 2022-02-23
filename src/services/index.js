@@ -1,9 +1,9 @@
 import AccountService from './accountService.js'
 import returnQuestions from './returnQuestions.js'
-import menu from './menu.js'
+import selectMethod from './selectMethod.js'
 
 export {
   AccountService,
   returnQuestions,
-  menu
+  selectMethod
 }

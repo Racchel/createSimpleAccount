@@ -1,7 +1,15 @@
 import inquirer from 'inquirer'
-import { infoMessage } from '../utils/messages/index.js'
+import { infoMessage, loginMessage } from '../utils/messages/index.js'
 
-const menu = async (accountService) => {
+const selectMethod = async (accountService) => {
+  // Mostra qual usuario está logado no momento
+
+  loginMessage(`Login: ${
+    accountService.ACCOUNT.username
+    ? accountService.ACCOUNT.username
+    : '------'
+  }`)
+
   try {
     const choice = await inquirer.prompt([{
       type: 'list',
@@ -13,6 +21,7 @@ const menu = async (accountService) => {
         'Consultar saldo',
         'Depositar',
         'Sacar',
+        'Logout',
         'Sair'
       ]
     }])
@@ -25,9 +34,15 @@ const menu = async (accountService) => {
     if (ch === 'Consultar') await accountService.checkBalance()
     if (ch === 'Depositar') await accountService.deposit()
     if (ch === 'Sacar') await accountService.withdraw()
+    if (ch === 'Logout') await accountService.logout()
     if (ch === 'Sair') exitProcess()
 
-    return await menu(accountService)
+    console.log('Loading...')
+
+    setTimeout(async () => {
+      console.clear()
+      return await selectMethod(accountService)
+    }, 1000)
   } catch (err) {
     console.error(err)
   }
@@ -38,4 +53,4 @@ const exitProcess = () => {
   return process.exit()
 }
 
-export default menu
+export default selectMethod
