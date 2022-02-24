@@ -42,7 +42,7 @@ const selectMethod = async (accountService) => {
     setTimeout(async () => {
       console.clear()
       return await selectMethod(accountService)
-    }, 1000)
+    }, 3000)
   } catch (err) {
     console.error(err)
   }

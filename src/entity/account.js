@@ -45,20 +45,21 @@ export default class Account {
     return infoMessage(`Seu saldo é de: R$${this.amount}`)
   }
 
-  async deposit ({ deposit }) {
-    this.amount += parseFloat(deposit)
+  async deposit ({ depositAmount }) {
+    this.amount += parseFloat(depositAmount)
 
-    return successMessage(`Perfeito! O valor de R$${deposit} foi depositado para ${this.username}!`)
+    return successMessage(`Perfeito! O valor de R$${depositAmount} foi depositado para ${this.username}!`)
   }
 
-  async withdraw ({ withdraw }) {
-    return successMessage(`Perfeito! Você sacou um valor de R$${withdraw} da conta <usuario>!`)
+  async withdraw ({ withdrawAmount }) {
+    this.amount -= parseFloat(withdrawAmount)
+    return successMessage(`Perfeito! Você sacou um valor de R$${withdrawAmount} da conta  ${this.username}!`)
   }
 
   // funções de validação
   checkLogin () {
     if (this.username === '') {
-      errorMessage('Login necessário')
+      errorMessage('Login necessário!')
       return false
     }
 

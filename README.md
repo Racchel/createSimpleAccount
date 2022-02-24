@@ -33,10 +33,12 @@ Projeto simples para criação de conta:
 ## Funcionalidades:
 
 1. [ ] Criar uma conta nova: usuário e senha
-2. [ ] Depositar um valor em dinheiro
-3. [ ] Consultar saldo
-4. [ ] Sacar um valor em dinheiro
-5. [ ] Finalizar processo
+2. [ ] Login: usuário e senha
+3. [ ] Depositar um valor em dinheiro
+4. [ ] Consultar saldo
+5. [ ] Sacar um valor em dinheiro
+6. [ ] Finalizar processo
+7. [ ] Logout
 
 ## Bônus
 
@@ -46,29 +48,37 @@ Projeto simples para criação de conta:
 
 0. [ ] MSG: Bem vindo(a) ao CreateSimpleAccount!
 
-1. [ ] MSG: Obrigado pela confiança! Sua conta foi criada como sucesso!
+1. [ ] MSG: Obrigado pela confiança! Sua conta foi criada como sucesso!: <usuario>
 
-2. [ ] MSG: Perfeito! O valor de R$<valor> foi depositado para <usuario>!
+2. [ ] MSG: Usuário <usuario> logado!
 
-3. [ ] MSG: Você possui um saldo de R$<valor>!
+3. [ ] MSG: Perfeito! O valor de R$<valor> foi depositado para <usuario>!
 
-4. [ ] MSG: Perfeito! Você sacou um valor de R$<valor> da conta <usuario>!
+4. [ ] MSG: Você possui um saldo de R$<valor>!
+
+5. [ ] MSG: Perfeito! Você sacou um valor de R$<valor> da conta <usuario>!
  
-5. [ ] MSG: Obrigado por usar o CreateSimpleAccount! Nos vemos na próxima!
+6. [ ] MSG: Obrigado por usar o CreateSimpleAccount! Nos vemos na próxima!
 
 
 ## Fluxo alternativo: ERRO
 
-1. [ ] ERRO: Usuário e senha são obrigatórios!
-1. [ ] ERRO: Essa conta já existe! Por favor, escolha outro usuario!
-1. [ ] ERRO: A senha deve ter, no mínimo, 8 caracteres, um MAIUSCULO, um minusculo, um número e um caracter especial. Exemplo: AAaa*2022
+1. [X] ERRO: Usuário e senha são obrigatórios!
+1. [X] ERRO: Essa conta já existe! Por favor, escolha outro usuário!
+1. [X] ERRO: Senha inválida! A senha deve ter, no mínimo, 8 caracteres, um MAIUSCULO, um minusculo, um número e um caracter especial. Exemplo: AAaa*2022
 
-2. [ ] ERRO: Essa conta não existe! Por favor, informe novamente
-2. [ ] ERRO: Usuário ou senha incorreta
+2. [X] ERRO: Usuário e senha são obrigatórios!
+2. [X] ERRO: Essa conta não existe! Por favor, informe novamente
 
-3. [ ] ERRO: Essa conta não existe! Por favor, informe novamente
-3. [ ] ERRO: Usuário ou senha incorreta
+3. [X] ERRO: Login necessário!
+3. [X] ERRO: Valor de depósito é obrigatório!
+3. [X] ERRO: Valor de depósito deve ser numérico!
 
-4. [ ] ERRO: Essa conta não existe! Por favor, informe novamente
-4. [ ] ERRO: Usuário ou senha incorreta
-4. [ ] ERRO: Valor de saque superior ao saldo! Por favor, informe novamente
+4. [X] ERRO: Login necessário!
+
+5. [X] ERRO: Login necessário!
+5. [X] ERRO: Valor de saque é obrigatório!
+5. [X] ERRO: Valor de saque deve ser numérico!
+5. [X] ERRO: Valor de saque superior ao saldo! Por favor, informe novamente
+
+7. [X] ERRO: Login necessário!

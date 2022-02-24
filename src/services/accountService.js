@@ -40,7 +40,7 @@ export default class AccountService {
     }
 
     if (usernameIsCorrect && isCreateAccount === true) {
-      errorMessage('Essa conta já existe! Por favor, escolha outro usuario!')
+      errorMessage('Essa conta já existe! Por favor, escolha outro usuário!')
       return await this.userInput({ isCreateAccount })
     }
 
@@ -62,6 +62,26 @@ export default class AccountService {
       return await this.userInput({ isCreateAccount })
     }
 
+    if (!passwordIsCorrect && isCreateAccount === false) {
+      errorMessage('Senha inválida!')
+      infoMessage('Você deseja recuperar a senha?')
+
+      const choice = await inquirer.prompt([{
+        name: 'action',
+        message: 'Caso queira, digite 1. Caso contrário, digite 2: '
+      }])
+
+      return choice.action === '1'
+        ? (
+            infoMessage('Recuperar conta: '),
+            console.log('A fazer...')
+          )
+        : (
+            infoMessage('Login: '),
+            await this.userInput({ isCreateAccount })
+          )
+    }
+
     // se tudo der certo
     return (isCreateAccount)
       ? this.ACCOUNT.create({ username, password })
@@ -80,10 +100,13 @@ export default class AccountService {
 
       const { depositAmount } = await inquirer.prompt(arrayQuestions)
 
-      if (depositAmount === '') return errorMessage('Valor de depósito é obrigatório!')
+      if (depositAmount === '') {
+        errorMessage('Valor de depósito é obrigatório!')
+        return await this.deposit()
+      }
 
       if (isNaN(depositAmount)) {
-        errorMessage('Valor deve ser numérico')
+        errorMessage('Valor de depósito deve ser numérico!')
         return await this.deposit()
       }
       return this.ACCOUNT.deposit({ depositAmount })
@@ -96,14 +119,22 @@ export default class AccountService {
 
       const { withdrawAmount } = await inquirer.prompt(arrayQuestions)
 
-      if (withdrawAmount === '') return errorMessage('Valor de saque é obrigatório!')
+      if (withdrawAmount === '') {
+        errorMessage('Valor de saque é obrigatório!')
+        return this.withdraw()
+      }
 
       if (isNaN(withdrawAmount)) {
         errorMessage('Valor deve ser numérico')
         return await this.withdraw()
       }
 
-      return this.ACCOUNT.withdraw(withdrawAmount)
+      if (withdrawAmount > this.ACCOUNT.amount) {
+        errorMessage('Valor de saque superior ao saldo! Por favor, informe novamente: ')
+        return await this.withdraw()
+      }
+
+      return this.ACCOUNT.withdraw({ withdrawAmount })
     }
   }
 
