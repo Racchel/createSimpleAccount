@@ -38,7 +38,7 @@ export default class Account {
     this.username = ''
     this.password = ''
 
-    infoMessage('Você está deslogado.')
+    infoMessage('Você está deslogado!')
   }
 
   async checkBalance () {

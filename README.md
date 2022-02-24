@@ -32,53 +32,59 @@ Projeto simples para criação de conta:
 
 ## Funcionalidades:
 
-1. [ ] Criar uma conta nova: usuário e senha
-2. [ ] Login: usuário e senha
-3. [ ] Depositar um valor em dinheiro
-4. [ ] Consultar saldo
-5. [ ] Sacar um valor em dinheiro
-6. [ ] Finalizar processo
-7. [ ] Logout
+- [x] 1. Criar uma nova conta: usuário e senha
+- [X] 2. Login: usuário e senha
+- [X] 3. Depositar um valor em dinheiro
+- [X] 4. Consultar saldo
+- [X] 5. Sacar um valor em dinheiro
+- [X] 6. Finalizar processo
+- [X] 7. Logout
 
 ## Bônus
 
-1. [ ] Transferir um valor para outra conta
+- [X] 1. Limpar console cada vez que volta para o menu
+- [X] 2. Ter a opção de cadastrar nova conta na opção de login -> caso usuário não seja encontrado
+- [ ] 3. Ter a opção de cadastrar recuperar senha na opção de login -> caso senha errada
+- [X] 4. Mostrar usuário logado no momento
+- [X] 5. Encriptar senha sem lib
+- [ ] 6. Transferir um valor para outra conta
 
 ## Fluxo de sucesso
 
-0. [ ] MSG: Bem vindo(a) ao CreateSimpleAccount!
-
-1. [ ] MSG: Obrigado pela confiança! Sua conta foi criada como sucesso!: <usuario>
-
-2. [ ] MSG: Usuário <usuario> logado!
-
-3. [ ] MSG: Perfeito! O valor de R$<valor> foi depositado para <usuario>!
-
-4. [ ] MSG: Você possui um saldo de R$<valor>!
-
-5. [ ] MSG: Perfeito! Você sacou um valor de R$<valor> da conta <usuario>!
- 
-6. [ ] MSG: Obrigado por usar o CreateSimpleAccount! Nos vemos na próxima!
+- [X] 0. MSG: Bem vindo(a) ao CreateSimpleAccount!
+- [X] 1. MSG: Obrigado pela confiança! Sua conta foi criada como sucesso!: <usuario>
+- [X] 2. MSG: Usuário <usuario> logado!
+- [X] 3. MSG: Perfeito! O valor de R$<valor> foi depositado para <usuario>!
+- [X] 4. MSG: Você possui um saldo de R$<valor>!
+- [X] 5. MSG: Perfeito! Você sacou um valor de R$<valor> da conta <usuario>!
+- [X] 6. MSG: Obrigado por usar o CreateSimpleAccount! Nos vemos na próxima!
+- [X] 7. MSG: Você está deslogado!
 
 
 ## Fluxo alternativo: ERRO
 
-1. [X] ERRO: Usuário e senha são obrigatórios!
-1. [X] ERRO: Essa conta já existe! Por favor, escolha outro usuário!
-1. [X] ERRO: Senha inválida! A senha deve ter, no mínimo, 8 caracteres, um MAIUSCULO, um minusculo, um número e um caracter especial. Exemplo: AAaa*2022
+### Criar uma nova conta
+- [X] 1. ERRO: Usuário e senha são obrigatórios!
+- [X] 1. ERRO: Essa conta já existe! Por favor, escolha outro usuário!
+- [X] 1. ERRO: Senha inválida! A senha deve ter, no mínimo, 8 caracteres, um MAIUSCULO, um minusculo, um número e um caracter especial. Exemplo: AAaa*2022
 
-2. [X] ERRO: Usuário e senha são obrigatórios!
-2. [X] ERRO: Essa conta não existe! Por favor, informe novamente
+### Login
+- [X] 2. ERRO: Usuário e senha são obrigatórios!
+- [X] 2. ERRO: Essa conta não existe! Por favor, informe novamente
 
-3. [X] ERRO: Login necessário!
-3. [X] ERRO: Valor de depósito é obrigatório!
-3. [X] ERRO: Valor de depósito deve ser numérico!
+### Depositar
+- [X] 3. ERRO: Login necessário!
+- [X] 3. ERRO: Valor de depósito é obrigatório!
+- [X] 3. ERRO: Valor de depósito deve ser numérico!
 
-4. [X] ERRO: Login necessário!
+### Consultar saldo
+- [X] 4. ERRO: Login necessário!
 
-5. [X] ERRO: Login necessário!
-5. [X] ERRO: Valor de saque é obrigatório!
-5. [X] ERRO: Valor de saque deve ser numérico!
-5. [X] ERRO: Valor de saque superior ao saldo! Por favor, informe novamente
+### Sacar
+- [X] 5. ERRO: Login necessário!
+- [X] 5. ERRO: Valor de saque é obrigatório!
+- [X] 5. ERRO: Valor de saque deve ser numérico!
+- [X] 5. ERRO: Valor de saque superior ao saldo! Por favor, informe novamente
 
-7. [X] ERRO: Login necessário!
+### Logout
+- [X] 7. ERRO: Login necessário!
