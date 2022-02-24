@@ -24,11 +24,11 @@ const returnQuestions = ({ indexs }) => {
       validate: (password) => (checkPassword(password))
     },
     {
-      name: 'deposit',
+      name: 'depositAmount',
       message: 'Quanto deseja depositar?'
     },
     {
-      name: 'withdraw',
+      name: 'withdrawAmount',
       message: 'Quanto deseja sacar?',
       validate: (withdraw) => checkBalance(withdraw)
     }

@@ -7,49 +7,63 @@ export default class AccountService {
     this.ACCOUNT = account
   }
 
-  async userInput ({ isCreate }) {
+  async userInput ({ isCreateAccount }) {
     // input de usuario
-    const qUsername = returnQuestions({ indexs: [0] })
-    const { username } = await inquirer.prompt(qUsername)
+    const usernameQuestion = returnQuestions({ indexs: [0] })
+    const { username } = await inquirer.prompt(usernameQuestion)
 
     // validar usuario
     if (username === '') {
       errorMessage('Usuário é obrigatório!')
-      return await this.userInput({ isCreate })
+      return await this.userInput({ isCreateAccount })
     }
 
-    const usernameCorrect = this.ACCOUNT.checkUsername(username)
+    const usernameIsCorrect = this.ACCOUNT.checkUsername(username)
 
-    if (!usernameCorrect && isCreate === false) {
+    if (!usernameIsCorrect && isCreateAccount === false) {
       errorMessage('Essa conta não existe! Por favor, informe novamente')
-      return await this.userInput({ isCreate })
+
+      const choice = await inquirer.prompt([{
+        name: 'action',
+        message: 'Caso queira criar uma nova conta, digite 1. Caso contrário, digite 2: '
+      }])
+
+      return choice.action === '1'
+        ? (
+            infoMessage('Criar nova conta: '),
+            await this.userInput({ isCreateAccount: true })
+          )
+        : (
+            infoMessage('Login: '),
+            await this.userInput({ isCreateAccount })
+          )
     }
 
-    if (usernameCorrect && isCreate === true) {
+    if (usernameIsCorrect && isCreateAccount === true) {
       errorMessage('Essa conta já existe! Por favor, escolha outro usuario!')
-      return await this.userInput({ isCreate })
+      return await this.userInput({ isCreateAccount })
     }
 
     // input de senha
-    const qPassword = returnQuestions({ indexs: [1] })
-    const { password } = await inquirer.prompt(qPassword)
+    const passwordQuestion = returnQuestions({ indexs: [1] })
+    const { password } = await inquirer.prompt(passwordQuestion)
 
     // validar senha
     if (password === '') {
       errorMessage('Senha é obrigatória!')
-      return await this.userInput({ isCreate })
+      return await this.userInput({ isCreateAccount })
     }
 
-    const passwordCorrect = this.ACCOUNT.checkPassword(password)
+    const passwordIsCorrect = this.ACCOUNT.checkPassword(password)
 
-    if (!passwordCorrect && isCreate === true) {
+    if (!passwordIsCorrect && isCreateAccount === true) {
       errorMessage('Senha inválida!')
       infoMessage(' A senha deve ter, no mínimo, 8 caracteres, um MAIUSCULO, um minusculo, um número e um caracter especial. Exemplo: AAaa*2022')
-      return await this.userInput({ isCreate })
+      return await this.userInput({ isCreateAccount })
     }
 
     // se tudo der certo
-    return (isCreate)
+    return (isCreateAccount)
       ? this.ACCOUNT.create({ username, password })
       : this.ACCOUNT.login({ username, password })
   }
@@ -64,14 +78,15 @@ export default class AccountService {
     if (this.ACCOUNT.checkLogin()) {
       const arrayQuestions = returnQuestions({ indexs: [2] })
 
-      const { deposit } = await inquirer.prompt(arrayQuestions)
+      const { depositAmount } = await inquirer.prompt(arrayQuestions)
 
-      if (deposit === '') return errorMessage('Valor é obrigatório!')
-      if (isNaN(deposit)) {
+      if (depositAmount === '') return errorMessage('Valor de depósito é obrigatório!')
+
+      if (isNaN(depositAmount)) {
         errorMessage('Valor deve ser numérico')
         return await this.deposit()
       }
-      return this.ACCOUNT.deposit({ deposit })
+      return this.ACCOUNT.deposit({ depositAmount })
     }
   }
 
@@ -79,9 +94,16 @@ export default class AccountService {
     if (this.ACCOUNT.checkLogin()) {
       const arrayQuestions = returnQuestions({ indexs: [3] })
 
-      const withdraw = await inquirer.prompt(arrayQuestions)
+      const { withdrawAmount } = await inquirer.prompt(arrayQuestions)
 
-      return this.ACCOUNT.withdraw(withdraw)
+      if (withdrawAmount === '') return errorMessage('Valor de saque é obrigatório!')
+
+      if (isNaN(withdrawAmount)) {
+        errorMessage('Valor deve ser numérico')
+        return await this.withdraw()
+      }
+
+      return this.ACCOUNT.withdraw(withdrawAmount)
     }
   }
 
