@@ -43,8 +43,8 @@ Projeto simples para criação de conta:
 ## Bônus
 
 - [X] 1. Limpar console cada vez que volta para o menu
-- [X] 2. Ter a opção de cadastrar nova conta na opção de login -> caso usuário não seja encontrado
-- [ ] 3. Ter a opção de cadastrar recuperar senha na opção de login -> caso senha errada
+- [X] 2. Opção de cadastrar nova conta na opção de login -> caso usuário não seja encontrado
+- [ ] 3. Opção de cadastrar recuperar senha na opção de login -> caso senha errada
 - [X] 4. Mostrar usuário logado no momento
 - [X] 5. Encriptar senha sem lib
 - [ ] 6. Transferir um valor para outra conta
