@@ -52,11 +52,11 @@ Projeto simples para criação de conta:
 ## Fluxo de sucesso
 
 - [X] 0. MSG: Bem vindo(a) ao CreateSimpleAccount!
-- [X] 1. MSG: Obrigado pela confiança! Sua conta foi criada como sucesso!: <usuario>
-- [X] 2. MSG: Usuário <usuario> logado!
-- [X] 3. MSG: Perfeito! O valor de R$<valor> foi depositado para <usuario>!
-- [X] 4. MSG: Você possui um saldo de R$<valor>!
-- [X] 5. MSG: Perfeito! Você sacou um valor de R$<valor> da conta <usuario>!
+- [X] 1. MSG: Obrigado pela confiança! Sua conta foi criada como sucesso!: ${usuario}
+- [X] 2. MSG: Usuário ${usuario} logado!
+- [X] 3. MSG: Perfeito! O valor de R$ ${valor} foi depositado para ${usuario}!
+- [X] 4. MSG: Você possui um saldo de R$ ${valor}!
+- [X] 5. MSG: Perfeito! Você sacou um valor de R$ ${valor} da conta ${usuario}!
 - [X] 6. MSG: Obrigado por usar o CreateSimpleAccount! Nos vemos na próxima!
 - [X] 7. MSG: Você está deslogado!
 
