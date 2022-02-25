@@ -7,7 +7,7 @@ Projeto simples para criação de conta:
 
 ### Módulos internos
 
-- **Fs**: módulo do NodeJS para interagir com o sistema de arquivos
+- **Fs**: módulo do NodeJS para interagir com o sistema de arquivos - em progresso
 
 ### Dependencies
 
@@ -29,6 +29,13 @@ Projeto simples para criação de conta:
 - **Usar JEST**: [Guia Jest](https://oieduardorabelo.medium.com/jest-escrever-testes-nunca-foi-t%C3%A3o-divertido-5f0e1950ba10)
 
 - **Usar Jest com ES6**: [Jest com ES6](https://stackoverflow.com/questions/35756479/does-jest-support-es6-import-export)
+
+## Como rodar o projeto:
+
+1. Clone o projeto na sua máquina
+2. Entre no projeto 
+3. Npm install || yarn 
+4. Npm start || yarn start
 
 ## Funcionalidades:
 
