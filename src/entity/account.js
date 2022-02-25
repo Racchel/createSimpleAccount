@@ -1,5 +1,6 @@
 import { successMessage, infoMessage, errorMessage } from '../utils/messages/index.js'
 import { encrypter, decrypt } from '../utils/encrypter/index.js'
+import fs from 'fs'
 
 export default class Account {
   constructor () {
@@ -13,6 +14,12 @@ export default class Account {
     const encryptedPassword = encrypter(password)
 
     this.accountList.push({ username: username, password: encryptedPassword })
+
+    // verifica se existe o diretorio
+    if (!fs.existsSync('../../accounts')) {
+      fs.mkdirSync('../../accounts')
+    }
+
     return successMessage(`Obrigado pela confiança! Sua conta foi criada como sucesso!: ${username}`)
   }
 
